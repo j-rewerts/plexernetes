@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex-deployment
+spec:
+  selector:
+    matchLabels:
+      app: plex
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+      - name: plex
+        image: plexinc/pms-docker
+        ports:
+        - containerPort: 1900/udp
+        - containerPort: 3005/tcp
+        - containerPort: 8324/tcp
+        - containerPort: 32400/tcp
+        - containerPort: 32410/udp
+        - containerPort: 32412/udp
+        - containerPort: 32413/udp
+        - containerPort: 32414/udp
+        - containerPort: 32469/tcp
